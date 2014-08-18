@@ -1,0 +1,52 @@
+require 'vagrant-openstack-plugin'
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "dummy"
+
+  # Make sure the private key from the key pair is provided
+  config.ssh.private_key_path = "~/.ssh/id_rsa"
+  config.ssh.pty = true
+
+  config.vm.provider :openstack do |os|
+    os.username     = "tetsuyasodo"
+    os.api_key      = ENV["OS_PASSWORD"] 
+
+    os.server_name  = "server1"
+    os.flavor       = /standard.small/ 
+    #os.image        = /Ubuntu Server 14.04.1 LTS/
+    os.image        = /CentOS 6.3/
+    os.endpoint     = "https://region-a.geo-1.identity.hpcloudsvc.com:35357/v2.0/tokens"
+    os.keypair_name = "tetsuyasodo-gmail"
+    os.ssh_username = "root"           
+
+    #os.metadata  = {"key" => "value"}
+    #os.user_data = "#cloud-config\nmanage_etc_hosts: True"
+    os.network            = "private"          
+    os.networks           = [ "private" ]     
+    #os.address_id         = "YOUR ADDRESS ID"
+    #os.scheduler_hints    = {
+    #    :cell => 'australia'
+    #}                                          # optional
+    os.region             = "region-a.geo-1"
+    os.availability_zone  = "az1"           
+    os.security_groups    = ['sec1']    
+    os.tenant             = "tetsuyasodo-project1"
+    os.floating_ip        = ENV["FLOATING_IP"]
+
+    #os.orchestration_stack_name = 'stack01'             # optional
+    #os.orchestration_cfn_template_file = '/tmp/cfn_heat_template.json'  # optional
+    #os.orchestration_cfn_template_parameters = {            # optional
+    #  'NetworkName' => 'net_01'
+    #} 
+  end
+
+#  config.omnibus.chef_version = :latest
+#  config.vm.provision :chef_solo do |chef|
+#    chef.cookbooks_path = ["./cookbooks", "./site-cookbooks"]
+#    chef.run_list = %w[
+#      recipe[yum-epel]
+#      recipe[nginx]
+#    ]
+#  end
+
+end

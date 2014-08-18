@@ -1,0 +1,2 @@
+export VAGRANT_VAGRANTFILE=Vagrantfile_private
+export FLOATING_IP=10.0.16.100

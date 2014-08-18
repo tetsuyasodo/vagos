@@ -1,0 +1,2 @@
+export VAGRANT_VAGRANTFILE=Vagrantfile_public
+export FLOATING_IP=15.125.95.54

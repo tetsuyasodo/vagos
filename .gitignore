@@ -1,0 +1,4 @@
+*.lock
+cookbooks/
+vagrant-ssh.conf
+passrc
