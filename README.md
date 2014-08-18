@@ -10,6 +10,7 @@ Note
 ----
 * vendor cookbook is not git-managed. When you cloned first, you need to fetch cookbooks
 * you need to create "passrc" file which contains "OS_PASSWORD" parameter for horizon login
+  (This file is git-ignored bacause it contains credentials)
 * floating ip addr is defined in "publicrc" file (FLOATING_IP parameter)
 
 Prerequisites
@@ -91,4 +92,4 @@ $ bundle exec berks vendor ./cookbooks   # if any vendor cookbooks to be added
 
 ToDo
 ----
-* switch public and private using sourcing rc files
+* private cloud test
