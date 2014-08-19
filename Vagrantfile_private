@@ -8,28 +8,29 @@ Vagrant.configure("2") do |config|
   config.ssh.pty = true
 
   config.vm.provider :openstack do |os|
-    os.username     = "tetsuyasodo"
+    os.username     = "admin"
     os.api_key      = ENV["OS_PASSWORD"] 
 
-    os.server_name  = "server1"
-    os.flavor       = /x1.small/ 
-    os.image        = /Ubuntu Server 14.04.1 LTS/
-    os.endpoint     = "https://10.0.22.11/v2.0/tokens"
+    os.server_name  = "prisvr1"
+    os.flavor       = /m1.small/ 
+    os.image        = /RHEL6.5base/
+    os.endpoint     = "http://10.0.22.11:5000/v2.0/tokens"
     os.keypair_name = "tetsuyasodo"
-    os.ssh_username = "root"           
+    os.ssh_username = "cloud-user"           
 
     #os.metadata  = {"key" => "value"}
+    os.user_data = "#!/bin/bash\necho 'export http_proxy=http://proxy.jpn.hp.com:8080'>>/etc/bashrc\necho 'export https_proxy=http://proxy.jpn.hp.com:8080'>>/etc/bashrc\nexport no_proxy=10.0.0.1,localhost"
     #os.user_data = "#cloud-config\nmanage_etc_hosts: True"
-    os.network            = "private"          
-    os.networks           = [ "private" ]     
+    os.network            = "private-network"          
+    os.networks           = [ "private-network" ]     
     #os.address_id         = "YOUR ADDRESS ID"
     #os.scheduler_hints    = {
     #    :cell => 'australia'
     #}                                          # optional
-    os.region             = "default"
+    os.region             = "RegionOne"
     os.availability_zone  = "nova"           
     os.security_groups    = ['default']    
-    os.tenant             = "demo"
+    os.tenant             = "hpdemo"
     os.floating_ip        = ENV["FLOATING_IP"]
 
     #os.orchestration_stack_name = 'stack01'             # optional
