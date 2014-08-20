@@ -6,8 +6,8 @@ Using vagrant-openstack for [hp helion public cloud](https://horizon.hpcloud.com
 * Provisioning: chef
 * Test the instance: serverspec
 
-Note
-----
+Notes
+-----
 * vendor cookbook is not git-managed. When you cloned first, you need to fetch cookbooks
 * you need to create "passrc" file which contains "OS_PASSWORD" parameter for horizon login
   (This file is git-ignored bacause it contains credentials)
@@ -31,8 +31,8 @@ $ vi spec/default/*_spec.rb
 $ vi .rspec   # setup color configuration
 ```
 
-How to use (from git clone)
----------------------------
+How to use
+----------
 * bootup
 ```
 $ git clone https://github.com/tetsuyasodo/vagos
@@ -92,4 +92,4 @@ $ bundle exec berks vendor ./cookbooks   # if any vendor cookbooks to be added
 
 ToDo
 ----
-* private cloud test
+
