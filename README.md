@@ -5,6 +5,7 @@ Using vagrant-openstack for [hp helion public cloud](https://horizon.hpcloud.com
 * Bootup instance: vagrant
 * Provisioning: chef
 * Test the instance: serverspec
+* CI: jenkins
 
 Notes
 -----
